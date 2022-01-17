@@ -12,7 +12,11 @@ const processRequest = require("./processRequest");
  *
  */
 const lambdaHandler = async (event, context) => {
+  console.log(JSON.stringify(event));
   const response = {
+    headers: {
+      "content-type": "application/json",
+    },
     body: "",
     statusCode: 200,
   };
