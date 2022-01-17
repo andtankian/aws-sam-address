@@ -1,4 +1,5 @@
 const processRequest = require("./processRequest");
+const AWS = require("aws-sdk");
 /**
  *
  * Event doc: https://docs.aws.amazon.com/apigateway/latest/developerguide/set-up-lambda-proxy-integrations.html#api-gateway-simple-proxy-for-lambda-input-format
@@ -31,6 +32,7 @@ const lambdaHandler = async (event, context) => {
     const address = await processRequest.processCep(cep);
     response.body = JSON.stringify(address);
   } catch (error) {
+    console.log(JSON.stringify(error.message))
     response.statusCode = 452;
     response.body = JSON.stringify({
       error: error.message,
